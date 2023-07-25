@@ -26,11 +26,30 @@ const choice = {
 function App() {
   const [userSelect, setUserSelect] = useState(null);
   const [computerSelect, setComputerSelect] = useState(null);
+  const [result, setResult] = useState("");
+
   const play = (userChoice) => {
     setUserSelect(choice[userChoice]);
     let computerChoice = randomChoice();
     setComputerSelect(computerChoice);
+    setResult(judgement(choice[userChoice], computerChoice));
   };
+
+  const judgement = (user, computer) => {
+    console.log("user", user, "computer", computer);
+    // *가위바위보 로직*
+    // 가위(3) 바위(3) 보(3) 각 세가지의 승패 경우의 수를 판단할수있음
+    // 사용자의 선택과 컴퓨터의 선택으로 승패 결정
+    // 승패 결정 - 가위(패) vs 묵(승), 가위(승) vs 보(패) ,가위(무) vs 가위(무)
+    //              묵(패) vs 보(승), 묵(승) vs 가위(패) ,묵(무) vs 묵(무)
+    //              보(패) vs 가위(승), 보(승) vs 묵(패) ,보(무) vs 보(무)
+    if (user.name == computer.name) {
+      return "tie";
+    } else if (user.name == "Rock") return computer.name == "Scissors" ? "win" : "lose";
+    else if (user.name == "Scissors") return computer.name == "Paper" ? "win" : "lose";
+    else if (user.name == "Paper") return computer.name == "Rock" ? "win" : "lose";
+  };
+  // computer
   const randomChoice = () => {
     let itemArray = Object.keys(choice); //객체의 키값만 어레이로 만들어주는 함수
     console.log(itemArray);
@@ -42,8 +61,8 @@ function App() {
   return (
     <div>
       <div className="main">
-        <Box title="You" item={userSelect} />
-        <Box title="Computer" item={computerSelect} />
+        <Box title="You" item={userSelect} result={result} />
+        <Box title="Computer" item={computerSelect} result={result} />
       </div>
       <div className="main">
         <button onClick={() => play("scissors")}>가위</button>
