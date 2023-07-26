@@ -3,12 +3,26 @@
   align-items: center;
   justify-content: center;
 }
+/* 결과 박스에 관한 css */
 .box {
   border: 1px solid black;
   width: 500px;
   height: 500px;
   text-align: center;
 }
+.win {
+  border: 10px solid green;
+  color: green;
+}
+.lose {
+  border: 10px solid red;
+  color: red;
+}
+.tie {
+  border: 10px solid black;
+  color: black;
+}
+/*  */
 .item-img {
   max-width: 300px;
 }
