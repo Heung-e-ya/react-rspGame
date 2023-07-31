@@ -54,7 +54,6 @@ function App() {
     let itemArray = Object.keys(choice); //객체의 키값만 어레이로 만들어주는 함수
     console.log(itemArray);
     let randomItem = Math.floor(Math.random() * itemArray.length);
-    console.log(randomItem);
     let final = itemArray[randomItem];
     return choice[final];
   };
